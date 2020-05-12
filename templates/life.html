@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<HTML lang="en">
+<HEAD>
+  <TITLE>Life Expectancy!!!</TITLE>
+  <META charset="utf-8">
+  <META name="viewport" content="width=device-width, initial-scale=1">
+
+</HEAD>
+<BODY>
+<DIV class="container">
+  <DIV class="row">
+
+    <table> 
+            <tr>
+        <td width="1000px" style="text-align:center;">
+        <h1><font color="black">Life Expectancy Prediction<BR>
+        Let's Predict youe remaining Life time</font></h1>
+    </td> 
+    </tr> <table> 
+
+    <FORM id='submit_params' method="POST" action="{{url_for('interact_life_expectancy')}}">
+      <SELECT class="selectpicker" name="sex">
+          <option value="{{default_sex}}" selected>{{default_sex}}</option>
+          <option>Both sexes</option>
+          <option>Female</option>
+          <option>Male</option>
+      </SELECT>
+      <SELECT class="selectpicker" name="age">
+          <option value="{{default_age}}" selected>{{default_age}}</option>
+           {% for age in range(1,100) %}
+               <option value="{{age}}">{{age}}</option>
+           {% endfor %}
+        </SELECT>
+
+       <SELECT class="selectpicker"  name="country">
+            <option value="{{default_country}}" selected>{{default_country}}</option>
+            {% for country in country_list %}
+              <option value="{{country}}">{{country}}</option>
+            {% endfor %}
+          </SELECT>
+
+       <button type="submit" class="btn btn-primary">Show me</button>
+       <button type="button" class="btn btn-secondary" onclick="location.href='/';" value="Reset">Reset</button>
+    </FORM>
+<BR>
+<H2>{{string_to_print}}</H2>
+<BR>
+<TABLE>
+<TR>
+{% for imag in healthy_image_list %}
+  {% if loop.index == 21 or loop.index == 41 or loop.index == 61 or loop.index == 81 %}
+    </TR><TR>
+  {% endif %}
+  <td><img src={{imag}} width="40" height="40"></td>
+
+{% endfor %}
+
+</TR>
+</TABLE>
+</BODY>
+</HTML>
